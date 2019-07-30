@@ -3,6 +3,7 @@ import React from 'react';
 export function ListSaved(props) {
 
 console.log(props);
+console.log(props.info._id);
 
 
     return (
@@ -14,7 +15,7 @@ console.log(props);
     <div className="uk-card-media-left uk-cover-container">
         <img src={props.info.image} alt="" uk-cover/>
         <a href={props.info.link}><button className="uk-button uk-button-default">View</button></a>
-        <button className="uk-button uk-button-default" onClick={() => props.deleteBook}>Delete</button>
+        <button className="uk-button uk-button-default" onClick={() => props.deleteBook(props.info._id)}>Delete</button>
     </div>
     <div>
         <div className="uk-card-body">       	

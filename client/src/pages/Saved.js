@@ -26,16 +26,12 @@ class Saved extends Component {
             .catch(err => console.log(err));
     };
 
-  //    loadBooks = () => {
-  //   API.getBooks()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
 
-
-
+  deleteBook = id => {
+    API.deleteBook(id)
+      .then(res => this.getSavedBooks())
+      .catch(err => console.log(err));
+  };
 
 
     render() {
@@ -51,7 +47,7 @@ class Saved extends Component {
                     <ul>
                     {this.state.books.map((book, i)=>(
                         <div>
-                        <ListSaved info={book} index={i} />
+                        <ListSaved info={book} deleteBook={this.deleteBook} index={i} />
                         </div>
 
                     ))}
