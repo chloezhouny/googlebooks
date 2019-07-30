@@ -86,7 +86,7 @@ class Search extends Component {
                     </FormBtn>
                 </form>
 
-                <div>
+                    <div>
                     {(this.state.books.length)? 
                     <ul>
                     {this.state.books.map((book, i)=>(
@@ -95,7 +95,6 @@ class Search extends Component {
                         </div>
 
                     ))}
-
                     </ul>
                 : "No Books to display!"}
                 </div>

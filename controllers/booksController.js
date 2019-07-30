@@ -4,6 +4,13 @@ const BASEURL = "https://www.googleapis.com/books/v1/volumes?q="
 // const APIKEY = "AIzaSyB6bQbILSH2fiFIw9alVhxs5EXiBAHkbeI"
 
 module.exports = {
+
+   findAll: function(req, res) {
+    db.Book
+      .find()
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  }, 
   findById: function(req, res) {
     db.Book
       .findById(req.params.id)
