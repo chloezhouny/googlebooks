@@ -19,7 +19,8 @@ class Search extends Component {
         description: '',
         image: '',
         link: '',
-        btnTxt: "Search"
+        btnTxt: "Search",
+        savedBooks: []
     }
 
     // componentDidMount() {
@@ -48,19 +49,39 @@ class Search extends Component {
             btnTxt: "Searching..."
         })
     console.log("i love donuts")
+
+        this.getSavedBooks();
+
         API.findBooks(this.state.search)
-        .then(res => this.setState({
+        .then(res => 
+        {
+            this.setState({
             books: res.data,
-            btnTxt: "Search"
-        }))
+            btnTxt: "Search"});
+
+            // this.
+
+            // this.setState({books: this.state.books.filter(x => x.volumeInfo.infoLink !== )})
+            // x => !(res2.data.map(y => y.link).includes(x.volumeInfo.infoLink)));
+
+        })
         .catch(err => console.log(err)) 
+    };
+
+
+     getSavedBooks() {
+        API.getSavedBooks()
+            .then(res => this.setState({ savedBook: res.data}))
+            .catch(err => console.log(err));
     };
 
 
   saveBook = bookData => {
     console.log("save button clicked");
     API.saveBook(bookData)
-      .then(res => console.log(res.json))
+      .then(res => 
+        this.setState({books: this.state.books.filter(x => x.volumeInfo.infoLink !== res.data.link)})
+        )
       .catch(err => console.log(err));
   };
 
