@@ -8,6 +8,7 @@ export default {
         return axios.get('/api/books/') // all saved books from db
     },
     saveBook: function (bookData) {
+        console.log("in api savebook", bookData);
         return axios.post("/api/books", bookData) //save book to database
     },
     deleteBook: function (id) {

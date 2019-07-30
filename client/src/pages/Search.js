@@ -5,10 +5,7 @@ import Input from '../components/Input'
 // import SaveBtn from '../components/SaveBtn'
 import FormBtn from '../components/FormBtn'
 import Banner from '../components/Banner'
-// import BannerAnim, { Element } from 'rc-banner-anim';
-// import TweenOne from 'rc-tween-one';
-// import 'rc-banner-anim/assets/index.css';
-// const BgElement = Element.BgElement;
+import List from '../components/List'
 
 
 
@@ -60,10 +57,17 @@ class Search extends Component {
     };
 
 
-
+  saveBook = bookData => {
+    console.log("save button clicked");
+    API.saveBook(bookData)
+      .then(res => console.log(res.json))
+      .catch(err => console.log(err));
+  };
 
     render() {
-        console.log(this.state.books)
+        console.log(this.state.books);
+         console.log(this.state.books[0]);
+
         return ( 
             <div>
             <Banner />
@@ -86,8 +90,12 @@ class Search extends Component {
                     {(this.state.books.length)? 
                     <ul>
                     {this.state.books.map((book, i)=>(
-                        <li key={i}>{book.volumeInfo.title}</li>   
+                        <div>
+                        <List info={book.volumeInfo} saveBook={this.saveBook} index={i} />
+                        </div>
+
                     ))}
+
                     </ul>
                 : "No Books to display!"}
                 </div>
